@@ -14,7 +14,7 @@ if [ ! -z "${DOCKER_VOLUMES_LIST}" ]; then
     IFS=',' read -ra volumes <<< "${DOCKER_VOLUMES_LIST}"
     for volume in "${volumes[@]}"
     do
-        DOCKER_VOLUMES_COMMAND="${DOCKER_VOLUMES_COMMAND}--docker-volumes ${volume} "
+        DOCKER_VOLUMES_COMMAND="${DOCKER_VOLUMES_COMMAND} --docker-volumes ${volume}"
     done
 fi
 

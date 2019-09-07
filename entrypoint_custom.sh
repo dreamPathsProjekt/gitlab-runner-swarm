@@ -11,8 +11,8 @@ fi
 if [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "${DOCKER_VOLUME_4}" ] && [ ! -z "${DOCKER_VOLUME_5}" ]; then
     gitlab-runner register \
             --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
+            --executor "${RUNNER_EXECUTOR:-docker}" \
+            --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" \
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --docker-volumes "${DOCKER_VOLUME_3}" \
@@ -29,8 +29,8 @@ if [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "${D
 elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "${DOCKER_VOLUME_4}" ]; then
     gitlab-runner register \
             --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
+            --executor "${RUNNER_EXECUTOR:-docker}" \
+            --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" \
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --docker-volumes "${DOCKER_VOLUME_3}" \
@@ -46,8 +46,8 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "$
 elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ]; then
     gitlab-runner register \
             --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
+            --executor "${RUNNER_EXECUTOR:-docker}" \
+            --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" \
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --docker-volumes "${DOCKER_VOLUME_3}" \
@@ -62,8 +62,8 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ]; then
 elif [ ! -z "${DOCKER_VOLUME_2}" ]; then
     gitlab-runner register \
             --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
+            --executor "${RUNNER_EXECUTOR:-docker}" \
+            --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" \
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --url "${GITLAB_URL:-https://gitlab.com/}" \
@@ -77,8 +77,8 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ]; then
 else
     gitlab-runner register \
             --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
+            --executor "${RUNNER_EXECUTOR:-docker}" \
+            --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" \
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --url "${GITLAB_URL:-https://gitlab.com/}" \
             --registration-token "${PROJECT_REGISTRATION_TOKEN}" \

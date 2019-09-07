@@ -22,4 +22,4 @@ gitlab-runner register \
         --docker-privileged="${DOCKER_PRIVILEGED:-true}" \
         --access-level="${ACCESS_LEVEL:-not_protected}"
 
-exec "$@"
+exec /entrypoint "$@"

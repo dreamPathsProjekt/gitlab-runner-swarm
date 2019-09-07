@@ -21,7 +21,7 @@ fi
 gitlab-runner register \
         --non-interactive \
         --executor "${RUNNER_EXECUTOR:-docker}" \
-        --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest} ${DOCKER_VOLUMES_COMMAND}" \
+        --docker-image "${DOCKER_DEFAULT_IMAGE:-docker:latest}" "${DOCKER_VOLUMES_COMMAND}" \
         --url "${GITLAB_URL:-https://gitlab.com/}" \
         --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
         --description "${RUNNER_DESCRIPTION:-docker-runner}" \

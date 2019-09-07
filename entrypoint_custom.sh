@@ -8,22 +8,7 @@ if [ -z "${GITLAB_URL}" ]; then
     GITLAB_URL=$(cat /run/secrets/gitlab_url)
 fi
 
-if [ ! -z "${DOCKER_VOLUME_2}" ]; then
-    gitlab-runner register \
-            --non-interactive \
-            --executor "docker" \
-            --docker-image docker:latest \
-            --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
-            --docker-volumes "${DOCKER_VOLUME_2}" \
-            --url "${GITLAB_URL:-https://gitlab.com/}" \
-            --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
-            --description "${RUNNER_DESCRIPTION:-docker-runner}" \
-            --tag-list "${TAG_LIST:-docker}" \
-            --run-untagged="${RUN_UNTAGGED:-true}" \
-            --locked="${LOCKED:-false}" \
-            --docker-privileged="${DOCKER_PRIVILEGED:-true}" \
-            --access-level="${ACCESS_LEVEL:-not_protected}"
-elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ]; then
+if [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "${DOCKER_VOLUME_4}" ] && [ ! -z "${DOCKER_VOLUME_5}" ]; then
     gitlab-runner register \
             --non-interactive \
             --executor "docker" \
@@ -31,6 +16,8 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ]; then
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --docker-volumes "${DOCKER_VOLUME_3}" \
+            --docker-volumes "${DOCKER_VOLUME_4}" \
+            --docker-volumes "${DOCKER_VOLUME_5}" \
             --url "${GITLAB_URL:-https://gitlab.com/}" \
             --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
             --description "${RUNNER_DESCRIPTION:-docker-runner}" \
@@ -56,7 +43,7 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "$
             --locked="${LOCKED:-false}" \
             --docker-privileged="${DOCKER_PRIVILEGED:-true}" \
             --access-level="${ACCESS_LEVEL:-not_protected}"
-elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "${DOCKER_VOLUME_4}" ] && [ ! -z "${DOCKER_VOLUME_5}" ]; then
+elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ]; then
     gitlab-runner register \
             --non-interactive \
             --executor "docker" \
@@ -64,8 +51,35 @@ elif [ ! -z "${DOCKER_VOLUME_2}" ] && [ ! -z "${DOCKER_VOLUME_3}" ] && [ ! -z "$
             --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --docker-volumes "${DOCKER_VOLUME_2}" \
             --docker-volumes "${DOCKER_VOLUME_3}" \
-            --docker-volumes "${DOCKER_VOLUME_4}" \
-            --docker-volumes "${DOCKER_VOLUME_5}" \
+            --url "${GITLAB_URL:-https://gitlab.com/}" \
+            --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
+            --description "${RUNNER_DESCRIPTION:-docker-runner}" \
+            --tag-list "${TAG_LIST:-docker}" \
+            --run-untagged="${RUN_UNTAGGED:-true}" \
+            --locked="${LOCKED:-false}" \
+            --docker-privileged="${DOCKER_PRIVILEGED:-true}" \
+            --access-level="${ACCESS_LEVEL:-not_protected}"
+elif [ ! -z "${DOCKER_VOLUME_2}" ]; then
+    gitlab-runner register \
+            --non-interactive \
+            --executor "docker" \
+            --docker-image docker:latest \
+            --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
+            --docker-volumes "${DOCKER_VOLUME_2}" \
+            --url "${GITLAB_URL:-https://gitlab.com/}" \
+            --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
+            --description "${RUNNER_DESCRIPTION:-docker-runner}" \
+            --tag-list "${TAG_LIST:-docker}" \
+            --run-untagged="${RUN_UNTAGGED:-true}" \
+            --locked="${LOCKED:-false}" \
+            --docker-privileged="${DOCKER_PRIVILEGED:-true}" \
+            --access-level="${ACCESS_LEVEL:-not_protected}"
+else
+    gitlab-runner register \
+            --non-interactive \
+            --executor "docker" \
+            --docker-image docker:latest \
+            --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
             --url "${GITLAB_URL:-https://gitlab.com/}" \
             --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
             --description "${RUNNER_DESCRIPTION:-docker-runner}" \

@@ -12,7 +12,11 @@ gitlab-runner register \
         --non-interactive \
         --executor "docker" \
         --docker-image docker:latest \
-        --docker-volumes "${DOCKER_VOLUMES:-/var/run/docker.sock:/var/run/docker.sock}" \
+        --docker-volumes "${DOCKER_VOLUME_1:-/var/run/docker.sock:/var/run/docker.sock}" \
+        --docker-volumes "${DOCKER_VOLUME_2}" \
+        --docker-volumes "${DOCKER_VOLUME_3}" \
+        --docker-volumes "${DOCKER_VOLUME_4}" \
+        --docker-volumes "${DOCKER_VOLUME_5}" \
         --url "${GITLAB_URL:-https://gitlab.com/}" \
         --registration-token "${PROJECT_REGISTRATION_TOKEN}" \
         --description "${RUNNER_DESCRIPTION:-docker-runner}" \

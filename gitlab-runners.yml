@@ -16,7 +16,8 @@ services:
       target: project_registration_token
     environment:
       GITLAB_URL: "https://gitlab.com/"
-      DOCKER_VOLUMES: "/var/run/docker.sock:/var/run/docker.sock,/tmp/elk/logstash/pipeline:/opt"
+      DOCKER_VOLUME_1: /var/run/docker.sock:/var/run/docker.sock
+      DOCKER_VOLUME_2: /tmp/elk/logstash/pipeline:/opt
       RUNNER_DESCRIPTION: "custom-docker-runner"
     deploy:
       replicas: 3

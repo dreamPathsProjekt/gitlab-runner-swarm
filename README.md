@@ -25,9 +25,5 @@ All variables can be referenced in [Official Docker Runner Registration Options]
 - `DOCKER_PRIVILEGED`:  Give extended privileges to container. Default: `true`
 - `ACCESS_LEVEL`: Set access_level of the runner to not_protected or ref_protected. Default: `not_protected`
 - `DOCKER_VOLUMES_LIST`: Bind-mount one or more volumes and create it/them if doesn't exist prior to mounting - comma separated. Example: `/var/run/docker.sock:/var/run/docker.sock` (binds to default docker socket in the host)
-- `DOCKER_VOLUME_2`: Additional volume bind-mount point.
-- `DOCKER_VOLUME_3`: Additional volume bind-mount point.
-- `DOCKER_VOLUME_4`: Additional volume bind-mount point.
-- `DOCKER_VOLUME_5`: Additional volume bind-mount point.
 
 > Do not forget to also add the volumes specified in `DOCKER_VOLUMES_LIST`, to the `volumes` section in compose file.

@@ -1,0 +1,10 @@
+version: '3.6'
+
+services:
+  runner:
+    image: dreampathsprojekt/gitlab-runner-swarm:latest
+    volumes:
+      # - /srv/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 3

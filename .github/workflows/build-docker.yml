@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+      - feature/*
+
 
 env:
   IMAGE_NAME: ${{ github.repository }}
@@ -12,6 +14,8 @@ env:
 
 jobs:
   build-and-push-image:
+    # Builds a docker image for amd64 and arm64 architectures,
+    # then pushes the result to ${{ REGISTRY }}
     permissions:
       contents: read
       packages: write
@@ -46,7 +50,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
           labels: |
             org.opencontainers.image.authors=Ioannis Dritsas <dream.paths.projekt@gmail.com>
-            org.opencontainers.image.base.name=${{ github.repository }}
+            org.opencontainers.image.base.name=${{ env.IMAGE_NAME }}
             org.opencontainers.image.description=Runs gitlab-runner in a manner compatible with Docker Swarm
             org.opencontainers.image.licenses=MIT
             org.opencontainers.image.title=GitLab Runner Swarm

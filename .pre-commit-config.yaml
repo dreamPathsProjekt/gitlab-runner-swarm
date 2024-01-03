@@ -1,0 +1,23 @@
+---
+# spell-checker: disable
+# See https://pre-commit.com/ for usage and config
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.5.0
+      hooks:
+          - id: check-added-large-files
+          - id: check-merge-conflict
+          - id: check-yaml
+            args:
+                - --allow-multiple-documents
+            stages:
+                - commit
+            types:
+                - yaml
+          - id: detect-private-key
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+    - repo: https://github.com/gitleaks/gitleaks
+      rev: v8.18.1
+      hooks:
+          - id: gitleaks

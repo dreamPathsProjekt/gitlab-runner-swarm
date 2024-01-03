@@ -25,7 +25,7 @@ REGISTER_COMMAND="gitlab-runner register \
     --docker-privileged=\"${DOCKER_PRIVILEGED:-true}\" \
     --access-level=\"${ACCESS_LEVEL:-not_protected}\""
 
-if [ -n "${DOCKER_VOLUMES_LIST}" ]; then
+if [ -n "${DOCKER_VOLUMES_LIST:-}" ]; then
     IFS=',' read -ra volumes <<< "${DOCKER_VOLUMES_LIST}"
     for volume in "${volumes[@]}"
     do
@@ -35,7 +35,7 @@ if [ -n "${DOCKER_VOLUMES_LIST}" ]; then
 fi
 
 # Allow for custom CA file
-if [ -n "${CUSTOM_CA_PATH}" ]; then
+if [ -n "${CUSTOM_CA_PATH:-}" ]; then
     if [[ ! -r "${CUSTOM_CA_PATH}" ]]; then
         echo "$0: WARN: Custom CA Path <${CUSTOM_CA_PATH}> is not readable. Registration will likely fail"
     else

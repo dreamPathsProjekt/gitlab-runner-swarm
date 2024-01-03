@@ -4,12 +4,12 @@ set -o errexit  # abort on nonsero exitstatus
 set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
-if [ -z "${PROJECT_REGISTRATION_TOKEN}" ]; then
-    PROJECT_REGISTRATION_TOKEN=$(cat /run/secrets/project_registration_token)
+if [ -z "${PROJECT_REGISTRATION_TOKEN:-}" ] && [ -r /run/secrets/project_registration_token ]; then
+    PROJECT_REGISTRATION_TOKEN=$(< /run/secrets/project_registration_token)
 fi
 
-if [ -z "${GITLAB_URL}" ]; then
-    GITLAB_URL=$(cat /run/secrets/gitlab_url)
+if [ -z "${GITLAB_URL:-}" ] && [ -r /run/secrets/gitlab_url ]; then
+    GITLAB_URL=$(< /run/secrets/gitlab_url)
 fi
 
 REGISTER_COMMAND="gitlab-runner register \

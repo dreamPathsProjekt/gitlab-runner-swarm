@@ -11,7 +11,7 @@ services:
       DOCKER_VOLUMES_LIST: /var/run/docker.sock:/var/run/docker.sock,/tmp/elk/logstash/pipeline:/opt
       GITLAB_URL: https://gitlab.com/
       RUNNER_DESCRIPTION: custom-docker-runner
-    image: ghcr.io/cgi-psaunders/gitlab-runner-swarm:latest
+    image: ghcr.io/dreamPathsProjekt/gitlab-runner-swarm:latest
     secrets:
       - source: project_registration_token_v1
         target: project_registration_token
